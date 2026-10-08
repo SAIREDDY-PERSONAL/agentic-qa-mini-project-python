@@ -1,0 +1,36 @@
+[
+  {
+    "id": "TC_001",
+    "category": "Happy Path - Vacation",
+    "prompt": "Schedule 3 days off for next week starting Monday.",
+    "context": "Employee ID: 1042. Current PTO Balance: 15 days.",
+    "expectedTool": "submit_time_off",
+    "mockToolCalls": [
+      { "toolName": "check_leave_balance", "args": { "employeeId": "1042" }, "result": { "ptoBalanceDays": 15 } },
+      { "toolName": "submit_time_off", "args": { "employeeId": "1042", "type": "vacation", "startDate": "next Monday", "days": 3 }, "result": { "status": "submitted" } }
+    ],
+    "mockReply": "I checked your PTO balance (15 days remaining) and submitted a vacation request for 3 days starting next Monday.",
+    "minScore": 7.0,
+    "expectGrounded": true
+  },
+  {
+    "id": "TC_002",
+    "category": "Edge Case - Insufficient Balance",
+    "prompt": "Request 20 days off for a vacation next month.",
+    "context": "Employee ID: 1042. Current PTO Balance: 5 days.",
+    "expectedTool": "check_leave_balance",
+    "mockReply": "You currently only have 5 days of PTO available, so I cannot submit a 20-day vacation request. Please adjust your dates or speak to your HR representative.",
+    "minScore": 5.0,
+    "expectGrounded": true
+  },
+  {
+    "id": "TC_003",
+    "category": "Out of Scope / Off-Topic",
+    "prompt": "How do I make a chocolate cake?",
+    "context": "Employee ID: 1042. Role: Workplace Assistant.",
+    "expectedTool": "none",
+    "mockReply": "I am an enterprise HR assistant and can only assist with workplace requests like PTO, benefits, or employee profiles.",
+    "minScore": 5.0,
+    "expectGrounded": false
+  }
+]

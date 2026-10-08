@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentic-qa"
+version = "0.1.0"
+description = "Evaluation framework for an agentic HR chatbot: Playwright UI tests, tool-call checks, and an LLM-as-judge"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain-anthropic>=1.7,<2",
+    "langchain-openai>=1.7,<2",
+    "langchain-ollama>=1.1,<2",
+    "pydantic>=2.14,<3",
+    "python-dotenv>=1.2,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.1,<10",
+    "pytest-playwright>=0.9,<1",
+    "pytest-html>=4.2,<5",
+    "pytest-timeout>=2.3,<3",
+    "ruff>=0.16,<0.17",
+    "mypy>=2.4,<3",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# -rA prints each test's captured output (the judge's evaluation report) in the summary
+addopts = "-v -rA --browser chromium"
+# Hard per-test limit so a stuck LLM judge call fails instead of hanging the suite
+timeout = 300
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+files = ["src", "tests"]
