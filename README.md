@@ -1,8 +1,8 @@
 # Agentic HCM Chatbot Evaluation Framework (Python)
 
-[![AI Agent Evaluation Suite](https://github.com/haywardsjohnny/agentic-qa-mini-project-python/actions/workflows/eval-ci.yml/badge.svg)](https://github.com/haywardsjohnny/agentic-qa-mini-project-python/actions/workflows/eval-ci.yml)
+[![AI Agent Evaluation Suite](https://github.com/SAIREDDY-PERSONAL/agentic-qa-mini-project-python/actions/workflows/eval-ci.yml/badge.svg)](https://github.com/SAIREDDY-PERSONAL/agentic-qa-mini-project-python/actions/workflows/eval-ci.yml)
 
-An evaluation framework for an agentic HR chatbot, written in Python. Playwright drives the chat UI and checks which tools the agent called. An LLM judge then scores each reply for groundedness and helpfulness. A TypeScript version of the same framework is at [agentic-qa-mini-project](https://github.com/haywardsjohnny/agentic-qa-mini-project).
+An evaluation framework for an agentic HR chatbot, written in Python. Playwright drives the chat UI and checks which tools the agent called. An LLM judge then scores each reply for groundedness and helpfulness. A TypeScript version of the same framework is at [agentic-qa-mini-project](https://github.com/SAIREDDY-PERSONAL/agentic-qa-mini-project).
 
 Agent replies are non-deterministic, so exact-match assertions don't work well. Each test therefore checks two things:
 
